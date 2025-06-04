@@ -8,68 +8,114 @@ const products = [
     ],
     [
         "patrone tas",
-        30,
-        "imgs/tas2.webp",
+        39.99,
+        "imgs/tas2.webp", // Change from .webp to .jpg
         "Patroon design tas",
-        false
+        true
     ],
     [
         "witte tas",
-        30,
+        50,
         "imgs/tas3.jpg",
         "Stijlvolle witte tas",
         true
+    ],
+    [
+        "zwarte tas",
+        59.99,
+        "imgs/tas4.webp",
+        "Zwarte tas met stijl",
+        true
+    ],
+    [
+        "zwarte tas",
+        70,
+        "imgs/tas5.webp",
+        "Zwarte tas met stijl",
+        true
+    ],
+    [
+        "zwarte tas",
+        79.99,
+        "imgs/tas6.webp",
+        "Zwarte tas met stijl",
+        true
+    ],
+    [
+        "zwarte tas",
+        89.99,
+        "imgs/tas7.webp",
+        "Zwarte tas met stijl",
+        true
+    ],
+    [
+        "zwarte tas",
+        99.99,
+        "imgs/tas8.webp",
+        "Zwarte tas met stijl",
+        true
+    ],
+    [
+        "zwarte tas",
+        10,
+        "imgs/tas9.webp",
+        "Zwarte tas met stijl",
+        true
     ]
+
 ];
 
-// Navigation event listeners
+
+
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Products code (only execute if product container exists)
+    const productContainer = document.querySelector('.product-container__overzicht');
+    if (productContainer) {
+        productContainer.innerHTML = ""; // Clear container
+
+        products.forEach(product => {
+            const [naam, prijs, afbeelding, beschrijving, beschikbaar] = product;
+            let cardHTML = `
+                <div class="${beschikbaar ? 'product' : 'product-outofstock'}">
+                    <img src="${afbeelding}" alt="" class="product__img">
+                    <h2 class="product__price">$${prijs}</h2>
+                    <p class="product__productname">${naam}</p>
+                    <p class="product__beschrijving">${beschrijving}</p>
+                    <p class="product__rating">★★★★</p>
+                    ${
+                        beschikbaar
+                        ? `<button class="product__button">add</button>`
+                        : `<button class="product-outofstock__button" disabled>out of stock</button>`
+                    }
+                </div>
+            `;
+            productContainer.innerHTML += cardHTML;
+        });
+    }
+
+    // Navigation event listeners
     const shopNowButton = document.getElementById('js--shopnow');
     const banner = document.querySelector('.banner__content__img');
     const bannerText = document.querySelector('.banner__content__text');
 
     if (shopNowButton) {
         shopNowButton.addEventListener('click', () => {
-            window.location.href = 'product-overzicht.html';
+            window.location.href = './product-overzicht.html';
         });
     }
 
     if (banner) {
         banner.addEventListener('click', () => {
-            window.location.href = 'product-overzicht.html';
+            window.location.href = './product-overzicht.html';
         });
     }
 
     if (bannerText) {
         bannerText.addEventListener('click', () => {
-            window.location.href = 'product-overzicht.html';
+            window.location.href = './product-overzicht.html';
         });
     }
-});
-
-// Products code (only execute if product container exists)
-const productContainer = document.querySelector('.product-container');
-if (productContainer) {
-    productContainer.innerHTML = ""; // Clear container
-
-    products.forEach(product => {
-        const [naam, prijs, afbeelding, beschrijving, beschikbaar] = product;
-        let cardHTML = `
-            <div class="${beschikbaar ? 'product' : 'product-outofstock'}">
-                <img src="${afbeelding}" alt="" class="product__img">
-                <h2 class="product__price">$${prijs}</h2>
-                <p class="product__productname">${naam}</p>
-                <p class="product__beschrijving">${beschrijving}</p>
-                <p class="product__rating">★★★★</p>
-                ${
-                    beschikbaar
-                    ? `<button class="product__button">add</button>`
-                    : `<button class="product-outofstock__button" disabled>out of stock</button>`
-                }
-            </div>
-        `;
-        productContainer.innerHTML += cardHTML;
-    });
 
     // Cart functionality
     const badge = document.getElementById('js--cart-badge');
@@ -77,18 +123,18 @@ if (productContainer) {
     const removeBtn = document.getElementById('js--cart-badge__verwijder');
     let cartCount = 0;
 
-    if (addButtons) {
-        addButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                cartCount++;
-                badge.textContent = cartCount;
-                badge.style.display = 'flex';
-                removeBtn.style.display = 'inline-block';
+    if (badge && removeBtn) {
+        if (addButtons) {
+            addButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    cartCount++;
+                    badge.textContent = cartCount;
+                    badge.style.display = 'flex';
+                    removeBtn.style.display = 'inline-block';
+                });
             });
-        });
-    }
+        }
 
-    if (removeBtn) {
         removeBtn.addEventListener('click', () => {
             if (cartCount > 0) {
                 cartCount--;
@@ -100,7 +146,8 @@ if (productContainer) {
             }
         });
     }
-}
+});
+
 
 /**
 * Utility function to calculate the current theme setting.
