@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartItems = document.getElementById('cart-items');
     const cartTotalPrice = document.getElementById('cart-total-price');
     
-    // Get cart from localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     
     function updateCartDisplay() {
@@ -34,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCartBadge();
     }
     
-    // Update cart badge
     function updateCartBadge() {
         const badge = document.getElementById('js--cart-badge');
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -45,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Add to cart function
     window.updateQuantity = function(index, change) {
         cart[index].quantity += change;
         if (cart[index].quantity < 1) cart[index].quantity = 1;
@@ -53,13 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCartDisplay();
     };
     
-    // Remove from cart function
     window.removeItem = function(index) {
         cart.splice(index, 1);
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartDisplay();
     };
     
-    // Initial display
     updateCartDisplay();
 });
