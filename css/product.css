@@ -1,7 +1,7 @@
 .product-detail {
     max-width: 900px;
     margin: 4rem auto;
-    background: #fff;
+    background: whitesmoke;
     border-radius: 1.5rem;
     box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.1);
     padding: 2rem;
@@ -53,4 +53,17 @@
         width: 100%;
         max-width: 350px;
     }
+}
+
+body.dark-mode .product-detail {
+    background: #2d2d2d;
+    color: #fff;
+}
+
+body.dark-mode .product-detail__price {
+    color: #90ee90;
+}
+
+body.dark-mode .product-detail__stock {
+    color: #90ee90;
 }

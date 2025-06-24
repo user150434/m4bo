@@ -158,10 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 quantity: 1
             };
             
-            // Get existing cart
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             
-            // Check if product already exists in cart
             const existingProduct = cart.find(item => item.name === productData.name);
             if (existingProduct) {
                 existingProduct.quantity++;
@@ -169,10 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 cart.push(productData);
             }
             
-            // Save cart
             localStorage.setItem('cart', JSON.stringify(cart));
             
-            // Update cart badge
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             badge.textContent = totalItems;
             badge.style.display = 'flex';
