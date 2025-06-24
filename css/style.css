@@ -23,7 +23,6 @@ img {
     height: auto;
 }
 
-
 header{
     position: sticky;
     top: 0;
@@ -32,12 +31,17 @@ header{
 
 
 
+.winkelmantje a {
+    color: inherit; 
+    text-decoration: none;
+}
+
 .winkelmantje {
     position: absolute;
     top: 1rem;
-    right: 7rem; /* Increased from 2rem to make space for darkmode button */
+    right: 7rem;
     font-size: 3.5rem;
-    color: black;
+    color: black; 
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -47,6 +51,16 @@ header{
 .winkelmantje:hover {
     color: blue;
     transition: 0.3s;
+}
+
+body.dark-mode .winkelmantje,
+body.dark-mode .winkelmantje a {
+    color: #fff;
+}
+
+body.dark-mode .winkelmantje:hover,
+body.dark-mode .winkelmantje a:hover {
+    color: #007bff;
 }
 
 
@@ -78,11 +92,11 @@ header{
 }
 
 body.dark-mode .winkelmantje {
-    color: #fff; /* Changes cart icon color to white in dark mode */
+    color: #fff; 
 }
 
 body.dark-mode .winkelmantje:hover {
-    color: #007bff; /* Changes hover color to blue in dark mode for better visibility */
+    color: #007bff; 
 }
 
 .product__img {
@@ -101,8 +115,12 @@ body.dark-mode .winkelmantje:hover {
 .product__productname {
     font-size: 2rem;
 }
+.product__beschrijving {
+    margin: 0.5rem;
+}
 
 .product__rating {
+    margin: 0.2rem;
     font-size: 1.5rem;
     color: #f39c12;
 }
@@ -191,11 +209,10 @@ body.dark-mode .winkelmantje:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative; /* Added */
-    right: 0; /* Added */
+    position: relative; 
+    right: 0; 
 }
 
-/* Dark mode toggle button */
 .darkmode-toggle {
     background: none;
     border: none;
@@ -205,7 +222,6 @@ body.dark-mode .winkelmantje:hover {
     margin-left: 2rem;
 }
 
-/* Dark mode styles */
 body.dark-mode {
     background-color: #1a1a1a;
     color: #fff;
@@ -241,18 +257,4 @@ body.dark-mode .product__button {
 
 body.dark-mode .product__button:hover {
     background: #003d7a;
-}
-
-@media screen and (max-width: 1200px){
-    body{
-        background-color: red;;
-    }
-    .product-container {
-        padding: 10rem 10rem;
-    }
-} 
-@media screen and (max-width: 900px){
-    .product-container {
-        padding: 5rem 5rem;
-    }
 }

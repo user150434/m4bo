@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winkelmandje - Liondre</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/product-overzicht.css">
+    <link rel="stylesheet" href="css/mainpage.css">
+    <link rel="stylesheet" href="css/winkelmandje.css">
+    <script src="https://kit.fontawesome.com/4aa870e9c0.js" crossorigin="anonymous"></script>
+    <script src="js/darkmode.js" defer></script>
+    <script src="js/cart.js" defer></script>
+</head>
+<body>
+        <header>
+        <div class="header__top">
+            <div class="header__top__content">
+                <div class="header__left">
+                    <a href="index.html">
+                        <img src="imgs/ChatGPT Image 20 mei 2025, 09_59_32.png" alt="Liondre logo"
+                            class="header__top__content__logo">
+                    </a>
+                    <a href="index.html" class="header__top__content__title">
+                        <h1>Liondre</h1>
+                    </a>
+                </div>
+                <div class="header__top__links">
+                    <button class="darkmode-toggle" id="js--darkmode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+                <div class="winkelmantje">
+                    <span class="cart-icon-container">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge" id="js--cart-badge" style="display:none;">0</span>
+                    </span>
+                    <span class="cart-badge__verwijder" id="js--cart-badge__verwijder" style="display: none;">-1</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="cart-container">
+            <h2 class="cart-title">Winkelmandje</h2>
+            <div id="cart-items" class="cart-items">
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Totaal:</span>
+                    <span id="cart-total-price">€0.00</span>
+                </div>
+                <button class="checkout-button">Afrekenen</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
