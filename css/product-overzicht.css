@@ -162,7 +162,7 @@ body.dark-mode .filterlist__group label {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding: 0.2rem;
     background: #f5f5f5;
     top: 6rem;
 }
