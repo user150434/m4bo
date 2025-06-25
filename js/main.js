@@ -198,50 +198,52 @@ function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark })
 
 
 // filter functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const productContainer = document.querySelector('.product-container__overzicht');
-    const priceFilters = document.querySelectorAll('[data-price]');
-    const availabilityFilters = document.querySelectorAll('[data-available]');
+    // BEGINNER FRIENDLY FILTERS
+    const priceCheckboxes = document.querySelectorAll('.js--filter-price');
+    const availabilityCheckboxes = document.querySelectorAll('.js--filter-availability');
     const resetButton = document.getElementById('js--reset-filters');
 
     function filterProducts() {
-        const selectedPrices = Array.from(priceFilters)
-            .filter(checkbox => checkbox.checked)
-            .map(checkbox => checkbox.dataset.price);
+        // Get all checked price ranges
+        const selectedPriceRanges = Array.from(priceCheckboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.value);
 
-        const selectedAvailability = Array.from(availabilityFilters)
-            .filter(checkbox => checkbox.checked)
-            .map(checkbox => checkbox.dataset.available);
+        // Get all checked availability values
+        const selectedAvailability = Array.from(availabilityCheckboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.value);
 
-        const products = document.querySelectorAll('.product, .product-outofstock');
-        
-        products.forEach(product => {
-            const price = parseFloat(product.dataset.price);
-            const isAvailable = product.dataset.available === 'true';
+        // Loop through all products
+        document.querySelectorAll('.product, .product-outofstock').forEach(product => {
+            const price = parseFloat(product.getAttribute('data-price'));
+            const available = product.getAttribute('data-available');
 
-            const inPriceRange = selectedPrices.length === 0 || selectedPrices.some(range => {
+            // Check price
+            let priceMatch = selectedPriceRanges.length === 0;
+            for (const range of selectedPriceRanges) {
                 const [min, max] = range.split('-').map(Number);
-                return price >= min && price <= max;
-            });
+                if (price >= min && price <= max) priceMatch = true;
+            }
 
-            const matchesAvailability = selectedAvailability.length === 0 || 
-                selectedAvailability.includes(String(isAvailable));
+            // Check availability
+            let availabilityMatch = selectedAvailability.length === 0 || selectedAvailability.includes(available);
 
-            product.style.display = (inPriceRange && matchesAvailability) ? 'flex' : 'none';
+            // Show or hide product
+            product.style.display = (priceMatch && availabilityMatch) ? 'flex' : 'none';
         });
     }
 
-    priceFilters.forEach(checkbox => checkbox.addEventListener('change', filterProducts));
-    availabilityFilters.forEach(checkbox => checkbox.addEventListener('change', filterProducts));
-
+    // Add event listeners
+    priceCheckboxes.forEach(cb => cb.addEventListener('change', filterProducts));
+    availabilityCheckboxes.forEach(cb => cb.addEventListener('change', filterProducts));
     if (resetButton) {
         resetButton.addEventListener('click', () => {
-            priceFilters.forEach(checkbox => checkbox.checked = false);
-            availabilityFilters.forEach(checkbox => checkbox.checked = false);
+            priceCheckboxes.forEach(cb => cb.checked = false);
+            availabilityCheckboxes.forEach(cb => cb.checked = false);
             filterProducts();
         });
-    }
-});
+    };
 
 
 

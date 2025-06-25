@@ -62,14 +62,16 @@
                     <h3 class="filterlist__title">Filters</h3>
                     <div class="filterlist__group">
                         <h4>Price Range</h4>
-                        <label><input type="checkbox" data-price="0-30"> $0 - $30</label>
-                        <label><input type="checkbox" data-price="31-50"> $31 - $50</label>
-                        <label><input type="checkbox" data-price="51-100"> $51 - $100</label>
+                        <label><input type="checkbox" class="js--filter-price" value="0-30"> €0 - €30</label>
+                        <label><input type="checkbox" class="js--filter-price" value="31-50"> €31 - €50</label>
+                        <label><input type="checkbox" class="js--filter-price" value="51-80"> €51 - €80</label>
+                        <label><input type="checkbox" class="js--filter-price" value="81-100"> 81 - €100</label>
+
                     </div>
                     <div class="filterlist__group">
                         <h4>Availability</h4>
-                        <label><input type="checkbox" data-available="true"> In Stock</label>
-                        <label><input type="checkbox" data-available="false"> Out of Stock</label>
+                        <label><input type="checkbox" class="js--filter-availability" value="true"> Op voorraad</label>
+                        <label><input type="checkbox" class="js--filter-availability" value="false"> Niet op voorraad</label>
                     </div>
                     <button id="js--reset-filters" class="filterlist__reset">Reset Filters</button>
                 </div>
