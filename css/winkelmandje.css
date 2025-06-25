@@ -112,3 +112,19 @@ body.dark-mode .cart-summary {
     background: #2d2d2d;
     color: #fff;
 }
+
+@media (max-width: 700px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .cart-item-remove {
+        align-self: stretch;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    .cart-item-quantity {
+        margin: 1rem 0;
+    }
+}
